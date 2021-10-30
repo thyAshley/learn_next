@@ -11,7 +11,7 @@ const Banner: React.FC<BannerProps> = ({ buttonText, handleOnClick }) => {
   return (
     <div>
       <TitleStyle>
-        <SecondaryTitleStyle>Coffee</SecondaryTitleStyle>Connoisseur
+        <SecondaryTitleStyle>Coffee</SecondaryTitleStyle> Connoisseur
       </TitleStyle>
       <SubTitleStyle>Discover your local coffee shops</SubTitleStyle>
       <ButtonStyle onClick={handleOnClick}>{buttonText}</ButtonStyle>
@@ -31,11 +31,13 @@ const SecondaryTitleStyle = styled.span`
 `;
 
 const SubTitleStyle = styled.p`
+  color: ${theme.color.white};
   font-size: 1.5rem;
   margin-top: 1.25rem;
 `;
 
 const ButtonStyle = styled.button`
+  margin-top: 1.25rem;
   background-color: ${theme.color.primary};
   padding: 1rem 2.5rem;
   font-size: 1.125rem;
