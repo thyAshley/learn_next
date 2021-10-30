@@ -1,9 +1,24 @@
+@font-face {
+  font-family: "IBMPlexSans";
+  src: url("/fonts/IBMPlexSans-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBMPlexSans";
+  src: url("/fonts/IBMPlexSans-Bold.ttf");
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: IBMPlexSans, Lobster;
   background: linear-gradient(90deg, #ffc5ee, #9198e5);
   background-position: 50%;
   background-size: cover;
@@ -25,8 +40,16 @@ p {
   font-weight: 500;
 }
 
-h1,h2,h3,h4,h5,h6,hr,p,pre {
-  margin: 0
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
 }
 
 button {

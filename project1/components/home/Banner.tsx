@@ -25,6 +25,7 @@ const TitleStyle = styled.h1`
   color: ${theme.color.primary};
   line-height: 1;
   font-size: 3.75rem;
+  font-weight: bold;
 `;
 const SecondaryTitleStyle = styled.span`
   color: ${theme.color.white};
