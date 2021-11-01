@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { breakpoint } from '../apptheme';
 import Banner from '../components/home/Banner';
 import Card from '../components/home/Card';
+import CoffeeShopData from '../data/CoffeeShop.json';
 
 const Home: NextPage = () => {
 	const [text, setText] = useState('View stores nearby');
@@ -24,16 +25,14 @@ const Home: NextPage = () => {
 			<BodyStyle>
 				<Banner buttonText={text} handleOnClick={onClickHandler} />
 				<GridContentStyle>
-					<Card
-						title="Test Coffee"
-						url="/coffee-store/test"
-						imgUrl="/Coffe.jpeg"
-					/>
-					<Card
-						title="Test Coffee"
-						url="/coffee-store/test"
-						imgUrl="/Coffe.jpeg"
-					/>
+					{CoffeeShopData.map((shop) => (
+						<Card
+							key={shop.id}
+							title={shop.name}
+							url={`/coffee-store/${shop.id}`}
+							imgUrl={shop.imgUrl}
+						/>
+					))}
 				</GridContentStyle>
 			</BodyStyle>
 		</ContainerStyle>

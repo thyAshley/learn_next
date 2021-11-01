@@ -4,14 +4,24 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import { breakpoint, theme } from '../../apptheme';
-
+import CoffeeData from '../../data/CoffeeShop.json';
 interface CardProps {
 	title: string;
 	imgUrl: string;
 	url: string;
 }
 
+interface CoffeeShopProps {
+	id: number;
+	name: string;
+	imgUrl: string;
+	websiteUrl: string;
+	address: string;
+	neighbourhood: string;
+}
+
 const Card = ({ title, imgUrl, url }: CardProps): JSX.Element => {
+	const coffee: CoffeeShopProps[] = CoffeeData;
 	return (
 		<Link href={url}>
 			<CardStyle>
@@ -53,6 +63,11 @@ const ContainerStyle = styled.div`
 	--webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 	border: 1px solid hsla(0, 0%, 100%, 0.2);
+
+	&:hover {
+		background: hsla(0, 0%, 100%, 0.8);
+		cursor: pointer;
+	}
 `;
 
 const CardTitleStyle = styled.h2`
