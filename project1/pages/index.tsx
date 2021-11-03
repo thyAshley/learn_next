@@ -1,13 +1,25 @@
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { breakpoint } from '../apptheme';
+import { breakpoint, theme } from '../apptheme';
 import Banner from '../components/home/Banner';
 import Card from '../components/home/Card';
 import CoffeeShopData from '../data/CoffeeShop.json';
 
-const Home: NextPage = () => {
+interface coffeeStoreDetails {
+	id: number;
+	name: string;
+	imgUrl: string;
+	websiteUrl: string;
+	address: string;
+	neighbourhood: string;
+}
+interface HomeProps {
+	coffeeStores: coffeeStoreDetails[];
+}
+
+const Home: NextPage<HomeProps> = ({ coffeeStores }) => {
 	const [text, setText] = useState('View stores nearby');
 	const onClickHandler = () => {
 		setText((prevText) => {
@@ -24,22 +36,36 @@ const Home: NextPage = () => {
 			</Head>
 			<BodyStyle>
 				<Banner buttonText={text} handleOnClick={onClickHandler} />
-				<GridContentStyle>
-					{CoffeeShopData.map((shop) => (
-						<Card
-							key={shop.id}
-							title={shop.name}
-							url={`/coffee-store/${shop.id}`}
-							imgUrl={shop.imgUrl}
-						/>
-					))}
-				</GridContentStyle>
+				{coffeeStores.length && (
+					<>
+						<SubHeading>Store</SubHeading>
+						<GridContentStyle>
+							{coffeeStores.map((shop) => (
+								<Card
+									key={shop.id}
+									title={shop.name}
+									url={`/coffee-store/${shop.id}`}
+									imgUrl={shop.imgUrl}
+								/>
+							))}
+						</GridContentStyle>
+					</>
+				)}
 			</BodyStyle>
 		</ContainerStyle>
 	);
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+	const data = CoffeeShopData;
+	return {
+		props: {
+			coffeeStores: data,
+		},
+	};
+};
 
 const ContainerStyle = styled.div`
 	margin-bottom: 14rem;
@@ -75,6 +101,10 @@ const GridContentStyle = styled.div`
 	}
 `;
 
-const CardStyle = styled.div`
-	justify-content: center;
+const SubHeading = styled.h2`
+	font-size: 2.25rem;
+	line-height: 2.25rem;
+	padding-bottom: 2rem;
+	margin-top: 2rem;
+	color: ${theme.color.white};
 `;
