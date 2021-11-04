@@ -6,8 +6,15 @@ import { breakpoint, theme } from "../apptheme";
 import Banner from "../components/home/Banner";
 import Card from "../components/home/Card";
 import CoffeeShopData from "../data/CoffeeShop.json";
-import { coffeeStoreDetails } from "../types";
 
+interface coffeeStoreDetails {
+  id: number;
+  name: string;
+  imgUrl: string;
+  websiteUrl: string;
+  address: string;
+  neighbourhood: string;
+}
 interface HomeProps {
   coffeeStores: coffeeStoreDetails[];
 }
