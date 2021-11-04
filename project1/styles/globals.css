@@ -2,15 +2,7 @@
   font-family: "IBMPlexSans";
   src: url("/fonts/IBMPlexSans-Regular.ttf");
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "IBMPlexSans";
-  src: url("/fonts/IBMPlexSans-Bold.ttf");
-  font-style: bold;
-  font-weight: 700;
+  font-weight: 500;
   font-display: swap;
 }
 
@@ -18,7 +10,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: IBMPlexSans, Lobster;
+  font-family: "IBMPlexSans", Lobster;
   background: linear-gradient(90deg, #ffc5ee, #9198e5);
   background-position: 50%;
   background-size: cover;
