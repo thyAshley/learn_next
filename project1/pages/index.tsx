@@ -6,6 +6,7 @@ import { breakpoint, theme } from "../apptheme";
 import Banner from "../components/home/Banner";
 import Card from "../components/home/Card";
 import CoffeeShopData from "../data/CoffeeShop.json";
+import useLocation from "../hooks/useLocation";
 
 interface coffeeStoreDetails {
   id: number;
@@ -21,9 +22,14 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ coffeeStores }) => {
   const [text, setText] = useState("View stores nearby");
+
+  const { error, latLong, trackLocation } = useLocation();
+
   const onClickHandler = () => {
     setText((prevText) => {
       if (prevText === "View stores nearby") {
+        console.log(latLong);
+        trackLocation();
         return "Loading...";
       }
       return "View stores nearby";
