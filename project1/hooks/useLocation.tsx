@@ -9,7 +9,7 @@ const useLocation = () => {
 	}>({});
 
 	const { dispatch } = useContext(storeContext);
-	dispatch({ type: ActionKind.SET_LAT_LONG, payload: {} });
+	dispatch({ type: ActionKind.SET_LAT_LONG, payload: { latLong: '' } });
 
 	const successHandler: PositionCallback = (position) => {
 		const latitude = position.coords.latitude;

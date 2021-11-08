@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import React, { createContext, ReducerAction, useReducer } from 'react';
 
 export const storeContext = createContext(
-	{} as { state: State; dispatch: React.Dispatch<any> }
+	{} as { state: State; dispatch: React.Dispatch<Action> }
 );
 
 interface StoreProviderProps {
@@ -17,11 +17,10 @@ export enum ActionKind {
 
 type Action =
 	| {
-			type: ActionKind;
-			payload: any;
+			type: ActionKind.SET_STORES;
 	  }
 	| {
-			type: 'SET_LAT_LONG';
+			type: ActionKind.SET_LAT_LONG;
 			payload: {
 				latLong: string;
 			};
