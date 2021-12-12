@@ -1,37 +1,41 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from 'react';
+import { ActionKind, storeContext } from '../pages/_app';
 
 const useLocation = () => {
-  const [error, setError] = useState<string>("");
-  const [latLong, setLatLng] = useState<{
-    latitude?: number;
-    longitude?: number;
-  }>({});
+	const [error, setError] = useState<string>('');
+	const [latLong, setLatLng] = useState<{
+		latitude?: number;
+		longitude?: number;
+	}>({});
 
-  const successHandler: PositionCallback = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+	const { dispatch } = useContext(storeContext);
+	dispatch({ type: ActionKind.SET_LAT_LONG, payload: { latLong: '' } });
 
-    setLatLng({ latitude, longitude });
-    setError("");
-  };
+	const successHandler: PositionCallback = (position) => {
+		const latitude = position.coords.latitude;
+		const longitude = position.coords.longitude;
 
-  const errorHandler: PositionErrorCallback = () => {
-    setError("Unable to fetch location...");
-  };
+		setLatLng({ latitude, longitude });
+		setError('');
+	};
 
-  const trackLocation = () => {
-    if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
-    } else {
-      navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
-    }
-  };
+	const errorHandler: PositionErrorCallback = () => {
+		setError('Unable to fetch location...');
+	};
 
-  return {
-    trackLocation,
-    error,
-    latLong,
-  };
+	const trackLocation = () => {
+		if (!navigator.geolocation) {
+			setError('Geolocation is not supported by your browser');
+		} else {
+			navigator.geolocation.getCurrentPosition(successHandler, errorHandler);
+		}
+	};
+
+	return {
+		trackLocation,
+		error,
+		latLong,
+	};
 };
 
 export default useLocation;
